@@ -8,6 +8,7 @@ class Config:
         self.config_file = config_file
         self.source_dir = '/'
         self.target_dir = '/'
+        self.read()
 
     def read(self):
         try:

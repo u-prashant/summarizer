@@ -92,6 +92,9 @@ class TargetGUI:
         return Label(self.window, text=APP.TARGET_STATIC_LABEL, width=30, pady=7, bg=Colors.AZURE3)
 
     def get_label_dynamic(self):
+        text = APP.NO_DIR_SELECTED
+        if self.target_dir != '/':
+            text = self.target_dir
         return Label(self.window, text=APP.NO_DIR_SELECTED, width=70, height=4, fg=Colors.BLUE)
 
     def get_button_browse(self):
