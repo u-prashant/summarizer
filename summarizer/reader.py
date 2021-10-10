@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from constants import Columns
 
 
@@ -29,6 +30,6 @@ class RawFileReader:
             print('Reading {} file...'.format(file))
             df = Reader.read_csv(file)
             if Columns.BUCode not in df.columns:
-                df[Columns.BUCode] = ''
+                df[Columns.BUCode] = np.nan
             dfs.append(df[RawFileReader.columns_to_read])
         return pd.concat(dfs)
