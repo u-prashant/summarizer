@@ -95,7 +95,7 @@ class TargetGUI:
         text = APP.NO_DIR_SELECTED
         if self.target_dir != '/':
             text = self.target_dir
-        return Label(self.window, text=APP.NO_DIR_SELECTED, width=70, height=4, fg=Colors.BLUE)
+        return Label(self.window, text=text, width=70, height=4, fg=Colors.BLUE)
 
     def get_button_browse(self):
         return Button(self.window, text=APP.BROWSE, width=20, command=self.browse_folder, bg=Colors.AZURE4,
