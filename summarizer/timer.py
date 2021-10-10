@@ -13,4 +13,6 @@ class Timer:
 
     def stop(self):
         stop_time = timeit.default_timer()
-        print('{} Time: {}'.format(self.name, stop_time - self.start_time))
+        diff = (stop_time - self.start_time) / 60
+        print('{} Time: {}'.format(self.name, diff))
+        print()

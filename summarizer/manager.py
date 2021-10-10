@@ -50,7 +50,7 @@ class Manager:
             t = Timer(summarizer.name())
             t.start()
             df = summarizer.summary(preprocessed_df)
-            w.write_group(summarizer.get_sheet(), df)
+            w.write(summarizer.get_sheet(), df)
             t.stop()
 
         w.save()
