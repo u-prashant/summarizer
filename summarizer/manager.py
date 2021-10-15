@@ -1,4 +1,4 @@
-from constants import Files, Errors, Sheets, Options
+from constants import Files, Errors, Sheets, Options, Columns
 from timer import Timer
 from reader import Reader, RawFileReader
 from preprocess import Preprocessor

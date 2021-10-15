@@ -1,46 +1,31 @@
 Department,A2,A14,A15
 CREATED,,,CREATED
-BUCode changed,,,BUCode changed
-CANCELLED,,,CANCELLED
-CONFIRMATION,CONFIRMATION A2,CONFIRMATION A14,CONFIRMATION A15
-CS - Frame,,,CS - Frame
-CS - Tint,,,CS - Tint
-Cus copy Print,,,Cus copy Print
-Order Confirmed,,,Order Confirmed
-prod Copy Print,,,prod Copy Print
+CONFIRMATION,Conf A2,Conf A14,Conf A15
 LW,,,LW
 Inventory,,,Inventory
 Blk Change,Blk Change A2,Blk Change A14,Blk Change A15
-FSV - LOSS,FSV - LOSS A2,FSV - LOSS A14,FSV - LOSS A15
-FSV - QC,FSV - QC A2,FSV - QC A14,FSV - QC A15
-HOLD - Frame,HOLD - Frame,,
-HOLD - FSV,HOLD - FSV,,
-HOLD - Store,HOLD - Store A2,HOLD - Store A14,HOLD - Store A15
-Frame Store,Frame Store A2,Frame Store A14,Frame Store A15
+HOLD - Store,,,HOLD - Store
+Frame Store,Frame Store,,
 LOSS,LOSS A2,LOSS A14,LOSS A15
 DS,DS A2,DS A14,DS A15
 DS - rework,DS - rework A2,DS - rework A14,DS - rework A15
-TS,TS A2,TS A14,TS A15
-TS - rework,TS - rework A2,TS - rework A14,TS - rework A15
+TS,,TS A14,TS A15
+TS - rework,,TS - rework A14,TS - rework A15
 QC - DS,QC - DS A2,QC - DS A14,QC - DS A15
-QC - TS,QC - TS A2,QC - TS A14,QC - TS A15
+QC - TS,,QC - TS A14,QC - TS A15
 TINT,TINT A2,TINT A14,TINT A15
 TINT - QC,TINT - QC A2,TINT - QC A14,TINT - QC A15
 Stripping,Stripping A2,Stripping A14,Stripping A15
 Decoat,Decoat A2,Decoat A14,Decoat A15
-Ultra,Ultra A2,Ultra A14,Ultra A15
+Ultra,,Ultra A14,Ultra A15
 TC,TC A2,TC A14,TC A15
 TMC,TMC A2,TMC A14,TMC A15
-TINT TC Return,TINT TC Return A2,TINT TC Return A14,TINT TC Return A15
 FINAL QC,FINAL QC A2,FINAL QC A14,FINAL QC A15
-UC Packing,UC Packing A2,UC Packing A14,UC Packing A15
-UC QC - TS,UC QC - TS A2,UC QC - TS A14,UC QC - TS A15
+UC Packing,,,UC Packing A15
+UC QC - TS,,,UC QC - TS A15
 Auto Packer,,,Auto Packer
 Audit,Audit A2,Audit A14,Audit A15
-FITT,FITT A2,FITT A14,FITT A15
-Mounting,Mounting A2,Mounting A14,Mounting A15
-FITT - QC,FITT - QC A2,FITT - QC A14,FITT - QC A15
+FITT,FITT A2,FITT A14,
+Mounting,Mounting A2,Mounting A14,
+FITT - QC,FITT - QC A2,FITT - QC A14,
 DISPATCH,,,DISPATCH
-ready for Despatch,,,ready for Despatch
-Delivered,,,Delivered
-INVOICED,,,INVOICED

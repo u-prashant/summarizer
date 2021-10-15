@@ -23,6 +23,7 @@ class Summarizer(ABC):
             Columns.BUCode,
             Columns.OCIQty,
             Columns.OrderDate,
+            Columns.Stock,
         ]
 
         self.final_column_sequence = self.get_final_sequence()
@@ -112,12 +113,31 @@ class DeptCounter(Summarizer):
         return df
 
     def get_count_per_oci(self, df):
+        dept_build_count_map = {}
+        last_dept = ''
+        for index in range(len(df.index)):
+            row = df.iloc[index]
+            current_dept = row[Columns.Department]
+            if current_dept not in dept_build_count_map:
+                dept_build_count_map[current_dept] = {}
+            if last_dept != current_dept:
+                val = 0
+                building = row[Columns.LAB]
+                if building in dept_build_count_map[current_dept]:
+                    val = dept_build_count_map[current_dept][building]
+                val += 1
+                dept_build_count_map[current_dept][building] = val
+                last_dept = current_dept
+
         row = df.iloc[[0], [df.columns.get_loc(c) for c in self.common_columns]]
         for dept in self.d.departments:
             for building in self.buildings:
                 if building in self.d.departments_name[dept]:
                     column = self.d.departments_name[dept][building]
-                    row[column] = len(df[(df[Columns.Department] == dept) & (df[Columns.LAB] == building)])
+                    row[column] = 0
+                    if dept in dept_build_count_map:
+                        if building in dept_build_count_map[dept]:
+                            row[column] = dept_build_count_map[dept][building]
         return row
 
     def get_single_count(self, df):
@@ -142,6 +162,7 @@ class DeptCounter(Summarizer):
         row[Columns.CustomerCode] = df.iloc[:-1][Columns.CustomerCode].count()
         row[Columns.BUCode] = df.iloc[:-1][Columns.BUCode].count()
         row[Columns.OCIQty] = df.iloc[:-1][Columns.OCIQty].sum()
+        row[Columns.Stock] = df.iloc[:-1][Columns.Stock].count()
 
         for dept in self.d.departments:
             for building in self.buildings:

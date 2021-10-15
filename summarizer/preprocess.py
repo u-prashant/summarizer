@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import datetime
 
@@ -17,6 +18,8 @@ class Preprocessor:
         df = self.add_building(df)
         df = self.group_by_oci(df)
         df = self.add_time(df)
+        df = self.group_by_oci(df)
+        df = self.add_stock_info(df)
         df = self.group_by_oci(df)
         return df
 
@@ -41,6 +44,16 @@ class Preprocessor:
         df[Columns.ProductionDate] = df.apply(
             lambda x: self.get_date_based_on_7am_format(x[shifted_columns[0]], x[shifted_columns[1]]), axis=1)
         df = df.drop(columns=shifted_columns)
+        return df
+
+    def add_stock_info(self, df):
+        return df.apply(self.check_if_stock_per_oci)
+
+    @staticmethod
+    def check_if_stock_per_oci(df):
+        df[Columns.Stock] = not (
+                df[Columns.Department].str.contains('TS').any() | df[Columns.Department].str.contains('DS').any())
+        df[Columns.Stock] = df[Columns.Stock].apply(lambda x: 'Stock' if x is True else np.nan)
         return df
 
     def add_time(self, df):

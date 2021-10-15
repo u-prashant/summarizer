@@ -54,6 +54,7 @@ class Columns:
     OCIQty = 'OCIQty'
     OrderDate = 'OrderDate'
     Time = 'Time'
+    Stock = 'Stock'
 
 
 class Errors(Exception):
