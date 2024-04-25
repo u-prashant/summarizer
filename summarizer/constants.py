@@ -17,6 +17,7 @@ class APP:
 class Files:
     ORDER_STATUS_TO_DEPT_FILE = 'order_status_to_dept_file_path'
     DEPT_SEQUENCE_FILE = 'dept_sequence_file_path'
+    CATEGORY_FILE = 'category_file_path'
     RAW_FILES = 'raw_files_path'
     OUTPUT_FILE = 'output_file_path'
     CONFIG_FILE = 'config_file_path'
@@ -55,12 +56,15 @@ class Columns:
     OrderDate = 'OrderDate'
     Time = 'Time'
     Stock = 'Stock'
+    Category = 'Category'
+    DepartmentSequence = 'Department Sequence'
 
 
 class Errors(Exception):
     RawFileNotProvided = 'Raw File Path not provided'
     OrderStatusToDeptFileNotProvided = 'Order Status to Dept File Path not provided'
     DeptSequenceFileNotProvided = 'Dept Sequence File not provided'
+    CategoryFileNotProvided = 'Category File not provided'
     OutputFileNotProvided = 'Output File Path not provided'
     ConfigurationFileNotFound = 'Config File not provided'
 

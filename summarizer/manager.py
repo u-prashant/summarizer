@@ -3,6 +3,7 @@ from timer import Timer
 from reader import Reader, RawFileReader
 from preprocess import Preprocessor
 from department import OrderStatusToDepartment, DepartmentSequence
+from category import CategoryManager
 from summarizer import TimeCalculator, DeptCounter
 from writer import Writer
 
@@ -27,6 +28,10 @@ class Manager:
         department_sequence_df = Reader.read_csv(files[Files.DEPT_SEQUENCE_FILE])
         d = DepartmentSequence(department_sequence_df)
 
+        # read category
+        category_df = Reader.read_csv(files[Files.CATEGORY_FILE])
+        category_manager = CategoryManager(category_df)
+
         # read raw file
         raw_file_df = RawFileReader.read(files[Files.RAW_FILES])
 
@@ -41,9 +46,9 @@ class Manager:
         # running summarizers
         summarizers = []
         if options[Options.COMPUTE_TIME_DATA]:
-            summarizers.append(TimeCalculator(d))
+            summarizers.append(TimeCalculator(d, category_manager))
         if options[Options.COMPUTE_COUNT_DATA]:
-            summarizers.append(DeptCounter(d))
+            summarizers.append(DeptCounter(d, category_manager))
 
         for summarizer in summarizers:
             print('Running {} ...'.format(summarizer.name()))
@@ -66,6 +71,9 @@ class Manager:
 
         if Files.DEPT_SEQUENCE_FILE not in files:
             raise Errors(Errors.DeptSequenceFileNotProvided)
+
+        if Files.CATEGORY_FILE not in files:
+            raise Errors(Errors.CategoryFileNotProvided)
 
         if Files.OUTPUT_FILE not in files:
             raise Errors(Errors.OutputFileNotProvided)

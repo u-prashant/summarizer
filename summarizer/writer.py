@@ -16,4 +16,4 @@ class Writer:
         df.to_excel(self.writer, sheet_name=sheet_name, index=False)
 
     def save(self):
-        self.writer.save()
+        self.writer.close()

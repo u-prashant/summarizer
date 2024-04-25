@@ -1,3 +1,5 @@
+import sys
+
 from manager import Manager
 from constants import Options, Files, APP, Colors
 from tkinter import filedialog, ttk
@@ -144,6 +146,7 @@ class GenerateReportGUI:
             Files.RAW_FILES: raw_files.split('\n'),
             Files.ORDER_STATUS_TO_DEPT_FILE: './data/order_status_to_department.csv',
             Files.DEPT_SEQUENCE_FILE: './data/department_sequence.csv',
+            Files.CATEGORY_FILE: './data/category.csv',
             Files.OUTPUT_FILE: get_summary_file_location(target_dir)
         }
         options = {

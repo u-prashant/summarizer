@@ -18,27 +18,8 @@ class OrderStatusToDepartment:
         if order_status in self.order_status_to_dept_map:
             return self.order_status_to_dept_map[order_status]
 
-        order_status = order_status.upper()
-        dept = ''
-
-        if 'TS' in order_status:
-            dept = 'TS'
-        elif 'TC' in order_status:
-            dept = 'TC'
-        elif 'DS' in order_status:
-            dept = 'DS'
-        elif 'TMC' in order_status:
-            dept = 'TMC'
-        elif 'TINT' in order_status:
-            dept = 'TINT'
-        elif 'QC' in order_status and 'COATING' in order_status:
-            dept = 'FINAL QC'
-        elif 'FITT' in order_status:
-            dept = 'FITT'
-
-        if dept == '':
-            print('Department Not Found for OrderStatus {}'.format(order_status))
-        return dept
+        print('Department Not Found for OrderStatus {}'.format(order_status))
+        return ''
 
 
 class DepartmentSequence:

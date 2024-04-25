@@ -88,7 +88,7 @@ class Preprocessor:
 
     @staticmethod
     def group_by_oci(df):
-        return df.groupby([Columns.OCINumber])
+        return df.groupby([Columns.OCINumber], as_index=False)
 
     @staticmethod
     def add_building(df):

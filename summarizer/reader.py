@@ -1,3 +1,4 @@
+import chardet
 import pandas as pd
 import numpy as np
 from constants import Columns
@@ -6,8 +7,10 @@ from constants import Columns
 class Reader:
     @staticmethod
     def read_csv(file):
+        with open(file, 'rb') as f:
+            enc = chardet.detect(f.read())
         print(file)
-        return pd.read_csv(file)
+        return pd.read_csv(file, encoding=enc['encoding'])
 
 
 class RawFileReader:
