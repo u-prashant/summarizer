@@ -36,6 +36,20 @@ class Summarizer(ABC):
         final_column_sequence.append(Columns.Category)
         return final_column_sequence
 
+    def compute_rx_building(self, df):
+        df[Columns.RX_BUILDING] = df.apply(self.get_rx_building, axis=1)
+        return df
+
+    def get_rx_building(self, row):
+        building = ''
+        if row['DS A2'] > 0 or row['QC - DS A2'] > 0:
+            building = Buildings.A2
+        elif row['DS A14'] > 0 or row['TS A14'] > 0 or row['QC - DS A14'] > 0 or row['QC - TS A14'] > 0:
+            building = Buildings.A14
+        elif row['DS A15'] > 0 or row['TS A15'] > 0 or row['QC - DS A15'] > 0 or row['QC - TS A15'] > 0:
+            building = Buildings.A15
+        return building
+
     @abstractmethod
     def name(self):
         pass
@@ -65,6 +79,7 @@ class TimeCalculator(Summarizer):
         df = df[self.final_column_sequence]
         df = df.apply(lambda x: x)
         df = df.reset_index(drop=True)
+        df = self.compute_rx_building(df)
         df = df.replace(0, np.nan)
         return df
 
@@ -119,6 +134,7 @@ class DeptCounter(Summarizer):
 
         df = self.get_single_count(df)
         df = self.get_total_count(df)
+        # df = self.compute_rx_building(df)
 
         df = df.replace(0, np.nan)
 

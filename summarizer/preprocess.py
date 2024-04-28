@@ -71,7 +71,7 @@ class Preprocessor:
         ), axis=1)
 
         df[Columns.Time] = df['StartDate'].shift(-1) - df['StartDate']
-        df[Columns.Time] = df[Columns.Time].apply(lambda x: x.total_seconds() / 60)
+        df[Columns.Time] = df[Columns.Time].apply(lambda x: x.total_seconds())
         df[Columns.Time] = df[Columns.Time].fillna(0.0).astype(int)
         df = df.drop(columns=['StartDate'])
         return df

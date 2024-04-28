@@ -4,8 +4,8 @@ CONFIRMATION,Conf A2,Conf A14,Conf A15
 LW,,,LW
 Inventory,,,Inventory
 Blk Change,Blk Change A2,Blk Change A14,Blk Change A15
-HOLD - Store,,,HOLD - Store
-Frame Store,Frame Store,,
+HOLD,,,HOLD
+FRAME STORE,FRAME STORE,,
 LOSS,LOSS A2,LOSS A14,LOSS A15
 DS,DS A2,DS A14,DS A15
 DS - rework,DS - rework A2,DS - rework A14,DS - rework A15
@@ -15,17 +15,17 @@ QC - DS,QC - DS A2,QC - DS A14,QC - DS A15
 QC - TS,,QC - TS A14,QC - TS A15
 TINT,TINT A2,TINT A14,TINT A15
 TINT - QC,TINT - QC A2,TINT - QC A14,TINT - QC A15
-Stripping,Stripping A2,Stripping A14,Stripping A15
+STRIPPING,STRIPPING A2,STRIPPING A14,STRIPPING A15
 Decoat,Decoat A2,Decoat A14,Decoat A15
 Ultra,,Ultra A14,Ultra A15
 TC,TC A2,TC A14,TC A15
 TMC,TMC A2,TMC A14,TMC A15
 FINAL QC,FINAL QC A2,FINAL QC A14,FINAL QC A15
-UC Packing,,,UC Packing A15
-UC QC - TS,,,UC QC - TS A15
-Auto Packer,,,Auto Packer
+Uncoat Packing,,Uncoat Packing A14,Uncoat Packing A15
+Uncoat QC,,Uncoat QC A14,Uncoat QC A15
+Auto Packer,,Auto Packer A14,Auto Packer A15
 Audit,Audit A2,Audit A14,Audit A15
 FITT,FITT A2,FITT A14,
-Mounting,Mounting A2,Mounting A14,
+MOUNTING,MOUNTING A2,MOUNTING A14,
 FITT - QC,FITT - QC A2,FITT - QC A14,
-DISPATCH,,,DISPATCH
+DISPATCH,DISPATCH A2,DISPATCH A14,DISPATCH A15

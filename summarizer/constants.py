@@ -58,6 +58,7 @@ class Columns:
     Stock = 'Stock'
     Category = 'Category'
     DepartmentSequence = 'Department Sequence'
+    RX_BUILDING = 'RX-Building'
 
 
 class Errors(Exception):
