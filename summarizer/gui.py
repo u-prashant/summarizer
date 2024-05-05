@@ -15,11 +15,13 @@ class GUI:
     def launch(self):
         window = self.set_window()
         source = SourceGUI(window, self.config.source_dir)
+        info = InfoFilesGUI(window, self.config.source_dir)
         target = TargetGUI(window, self.config.target_dir)
         raw_checkbox = CheckboxGUI(window, APP.PREPROCESS_CHECKBOX)
         time_checkbox = CheckboxGUI(window, APP.TIME_CHECKBOX)
         count_checkbox = CheckboxGUI(window, APP.COUNT_CHECKBOX)
-        generate = GenerateReportGUI(window, self.config, source, target, raw_checkbox, time_checkbox, count_checkbox)
+        generate = GenerateReportGUI(window, self.config, source, target, raw_checkbox, time_checkbox, count_checkbox,
+                                     info)
         exit_btn = ExitGUI(window)
 
         source.label_static.grid(column=1, row=1, padx=15, pady=13, sticky='W')
@@ -27,6 +29,12 @@ class GUI:
         source.label_dynamic.grid(column=1, row=2, columnspan=4, padx=15, pady=13, sticky='EW')
 
         ttk.Separator(window, orient='horizontal').grid(column=1, row=3, columnspan=4, sticky='ew')
+
+        info.label_static.grid(column=1, row=4, padx=15, pady=13, sticky='W')
+        info.button_browse.grid(column=4, row=4, padx=15, pady=13, sticky='EW')
+        info.label_dynamic.grid(column=1, row=5, columnspan=4, padx=15, pady=13, sticky='EW')
+
+        ttk.Separator(window, orient='horizontal').grid(column=1, row=6, columnspan=4, sticky='ew')
 
         target.label_static.grid(column=1, row=7, padx=15, pady=13, sticky='W')
         target.button_browse.grid(column=4, row=7, padx=15, pady=13, sticky='EW')
@@ -51,6 +59,35 @@ class GUI:
         window.title(APP.NAME)
         window.config(background=Colors.AZURE3)
         return window
+
+
+class InfoFilesGUI:
+    def __init__(self, window, source_dir):
+        self.window = window
+        self.source_dir = source_dir
+        self.label_static = self.get_label_static()
+        self.label_dynamic = self.get_label_dynamic()
+        self.button_browse = self.get_button_browse()
+
+    def get_label_static(self):
+        return Label(self.window, text=APP.INFO_STATIC_LABEL, width=30, pady=7, bg=Colors.AZURE3)
+
+    def get_label_dynamic(self):
+        return Label(self.window, text=APP.NO_FILES_SELECTED, width=70, height=4, fg=Colors.BLUE)
+
+    def get_button_browse(self):
+        return Button(self.window, text=APP.BROWSE, width=20, command=self.browse_files, bg=Colors.AZURE4,
+                      fg=Colors.WHITE)
+
+    def browse_files(self):
+        file_types = [('Excel files', '.xlsx .xls .csv'), ('all files', '.*')]
+        files = filedialog.askopenfilenames(initialdir=self.source_dir, title=APP.SELECT_INFO_FILES,
+                                            filetypes=file_types)
+
+        text = '\n'.join(list(files))
+        if text == "":
+            text = APP.NO_FILES_SELECTED
+        self.label_dynamic.configure(text=text)
 
 
 class SourceGUI:
@@ -121,11 +158,12 @@ class CheckboxGUI:
 
 
 class GenerateReportGUI:
-    def __init__(self, window, config, source_ui, target_ui, raw_checkbox, time_checkbox, counter_checkbox):
+    def __init__(self, window, config, source_ui, target_ui, raw_checkbox, time_checkbox, counter_checkbox, info_ui):
         self.config = config
         self.window = window
         self.source_ui = source_ui
         self.target_ui = target_ui
+        self.info_ui = info_ui
         self.raw_checkbox = raw_checkbox
         self.time_checkbox = time_checkbox
         self.counter_checkbox = counter_checkbox
@@ -138,12 +176,14 @@ class GenerateReportGUI:
     def generate_report(self):
         raw_files = self.source_ui.label_dynamic.cget('text')
         target_dir = self.target_ui.label_dynamic.cget('text')
+        info_files = self.info_ui.label_dynamic.cget('text')
         self.config.set_source_dir(raw_files)
         self.config.set_target_dir(target_dir)
         self.config.write()
 
         files = {
             Files.RAW_FILES: raw_files.split('\n'),
+            Files.INFO_FILES: info_files.split('\n'),
             Files.ORDER_STATUS_TO_DEPT_FILE: './data/order_status_to_department.csv',
             Files.DEPT_SEQUENCE_FILE: './data/department_sequence.csv',
             Files.CATEGORY_FILE: './data/category.csv',

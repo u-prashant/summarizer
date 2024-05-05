@@ -2,8 +2,10 @@ class APP:
     NAME = 'TAT'
     SOURCE_STATIC_LABEL = 'Raw Files'
     TARGET_STATIC_LABEL = 'Destination Folder'
+    INFO_STATIC_LABEL = 'Info Files'
     SELECT_RAW_FILES = 'Select Raw Files'
     SELECT_DESTINATION_FOLDER = 'Select Destination Folder'
+    SELECT_INFO_FILES = 'Select Information Files'
     NO_FILES_SELECTED = 'No Files Selected'
     NO_DIR_SELECTED = 'No Directory Selected'
     BROWSE = 'Browse'
@@ -19,6 +21,7 @@ class Files:
     DEPT_SEQUENCE_FILE = 'dept_sequence_file_path'
     CATEGORY_FILE = 'category_file_path'
     RAW_FILES = 'raw_files_path'
+    INFO_FILES = 'info_files_path'
     OUTPUT_FILE = 'output_file_path'
     CONFIG_FILE = 'config_file_path'
 
@@ -59,6 +62,18 @@ class Columns:
     Category = 'Category'
     DepartmentSequence = 'Department Sequence'
     RX_BUILDING = 'RX-Building'
+
+    REFocality = 'RE focality'
+    LEFocality = 'LE focality'
+    RELensName = 'RE lens name'
+    LELensName = 'LE lens name'
+    REIndex = 'RE ref. index'
+    LEIndex = 'LE Ref. index'
+    Coating = 'Coating'
+
+    Focality = 'Focality'
+    LensName = 'LensName'
+    Index = 'Index'
 
 
 class Errors(Exception):

@@ -10,7 +10,7 @@ class Preprocessor:
     def __init__(self, department):
         self.department = department
 
-    def preprocess(self, df):
+    def preprocess(self, df, info_df):
         df = self.set_datatype(df)
         df = self.sort(df)
         df = self.add_production_date(df)
@@ -20,7 +20,24 @@ class Preprocessor:
         df = self.add_time(df)
         df = self.group_by_oci(df)
         df = self.add_stock_info(df)
+        info_df = self.process_info_df(info_df)
+        df = self.add_info(df, info_df)
         df = self.group_by_oci(df)
+        return df
+
+    @staticmethod
+    def process_info_df(info_df):
+        info_df[Columns.REIndex] = info_df[Columns.REIndex].fillna(info_df[Columns.LEIndex])
+        info_df[Columns.REFocality] = info_df[Columns.REFocality].fillna(info_df[Columns.LEFocality])
+        info_df[Columns.RELensName] = info_df[Columns.RELensName].fillna(info_df[Columns.LELensName])
+        info_df[Columns.Index] = info_df[Columns.REIndex]
+        info_df[Columns.Focality] = info_df[Columns.REFocality]
+        info_df[Columns.LensName] = info_df[Columns.RELensName]
+        return info_df
+
+    @staticmethod
+    def add_info(df, info_df):
+        df = pd.merge(df, info_df, on=[Columns.OCINumber], how='left')
         return df
 
     @staticmethod

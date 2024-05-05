@@ -1,6 +1,6 @@
 from constants import Files, Errors, Sheets, Options, Columns
 from timer import Timer
-from reader import Reader, RawFileReader
+from reader import Reader, RawFileReader, InfoFileReader
 from preprocess import Preprocessor
 from department import OrderStatusToDepartment, DepartmentSequence
 from category import CategoryManager
@@ -35,11 +35,14 @@ class Manager:
         # read raw file
         raw_file_df = RawFileReader.read(files[Files.RAW_FILES])
 
+        # read info files
+        info_file_df = InfoFileReader.read(files[Files.INFO_FILES])
+
         w = Writer(files[Files.OUTPUT_FILE])
 
         # preprocessing raw file
         p = Preprocessor(o)
-        preprocessed_df = p.preprocess(raw_file_df)
+        preprocessed_df = p.preprocess(raw_file_df, info_file_df)
         if options[Options.WRITE_PREPROCESS_DATA]:
             w.write_group(Sheets.RAW_DATA, preprocessed_df)
 

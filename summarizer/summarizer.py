@@ -25,6 +25,10 @@ class Summarizer(ABC):
             Columns.OCIQty,
             Columns.OrderDate,
             Columns.Stock,
+            Columns.LensName,
+            Columns.Focality,
+            Columns.Coating,
+            Columns.Index
         ]
 
         self.final_column_sequence = self.get_final_sequence()
