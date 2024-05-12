@@ -20,6 +20,7 @@ class Files:
     ORDER_STATUS_TO_DEPT_FILE = 'order_status_to_dept_file_path'
     DEPT_SEQUENCE_FILE = 'dept_sequence_file_path'
     CATEGORY_FILE = 'category_file_path'
+    COATING_GROUP_FILE = 'coating_group_file_path'
     RAW_FILES = 'raw_files_path'
     INFO_FILES = 'info_files_path'
     OUTPUT_FILE = 'output_file_path'
@@ -74,6 +75,9 @@ class Columns:
     Focality = 'Focality'
     LensName = 'LensName'
     Index = 'Index'
+
+    CoatingList = 'Coating List'
+    CoatingGroupName = 'Coating Group name'
 
 
 class Errors(Exception):

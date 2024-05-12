@@ -7,8 +7,9 @@ from constants import Columns
 
 
 class Preprocessor:
-    def __init__(self, department):
+    def __init__(self, department, coating_group_map):
         self.department = department
+        self.coating_group_map = coating_group_map
 
     def preprocess(self, df, info_df):
         df = self.set_datatype(df)
@@ -22,7 +23,12 @@ class Preprocessor:
         df = self.add_stock_info(df)
         info_df = self.process_info_df(info_df)
         df = self.add_info(df, info_df)
+        df = self.add_coating_group(df)
         df = self.group_by_oci(df)
+        return df
+
+    def add_coating_group(self, df):
+        df[Columns.Coating] = df[Columns.Coating].replace(self.coating_group_map)
         return df
 
     @staticmethod

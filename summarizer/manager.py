@@ -1,4 +1,5 @@
 from constants import Files, Errors, Sheets, Options, Columns
+from coating import CoatingToCoatingGroup
 from timer import Timer
 from reader import Reader, RawFileReader, InfoFileReader
 from preprocess import Preprocessor
@@ -32,6 +33,11 @@ class Manager:
         category_df = Reader.read_csv(files[Files.CATEGORY_FILE])
         category_manager = CategoryManager(category_df)
 
+        # read coating group
+        coating_df = Reader.read_csv(files[Files.COATING_GROUP_FILE])
+        coating_group_map = CoatingToCoatingGroup(coating_df).coating_to_coating_group_map
+
+
         # read raw file
         raw_file_df = RawFileReader.read(files[Files.RAW_FILES])
 
@@ -41,7 +47,7 @@ class Manager:
         w = Writer(files[Files.OUTPUT_FILE])
 
         # preprocessing raw file
-        p = Preprocessor(o)
+        p = Preprocessor(o, coating_group_map)
         preprocessed_df = p.preprocess(raw_file_df, info_file_df)
         if options[Options.WRITE_PREPROCESS_DATA]:
             w.write_group(Sheets.RAW_DATA, preprocessed_df)
