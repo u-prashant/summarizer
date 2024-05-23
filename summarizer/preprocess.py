@@ -67,6 +67,7 @@ class Preprocessor:
         df[Columns.ProductionDate] = df.apply(
             lambda x: self.get_date_based_on_7am_format(x[shifted_columns[0]], x[shifted_columns[1]]), axis=1)
         df = df.drop(columns=shifted_columns)
+        df.loc[df[Columns.ProductionDate] < df[Columns.DateOfChange], Columns.ProductionDate] = df[Columns.DateOfChange]
         return df
 
     def add_stock_info(self, df):
